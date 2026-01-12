@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Brushing Helper</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Setup Screen -->
+        <section id="setup-screen" class="screen active">
+            <h1>Let's Brush Hair!</h1>
+
+            <div class="setup-group">
+                <h2>1. Choose your Buddy</h2>
+                <div class="avatar-selection">
+                    <div class="avatar-option" data-avatar="unicorn">
+                        <img src="assets/avatar_unicorn.png" alt="Unicorn">
+                    </div>
+                    <div class="avatar-option" data-avatar="lion">
+                        <img src="assets/avatar_lion_1767797603640.png" alt="Lion">
+                    </div>
+                    <div class="avatar-option" data-avatar="superhero">
+                        <img src="assets/avatar_superhero.png" alt="Superhero">
+                    </div>
+                </div>
+            </div>
+
+            <div class="setup-group">
+                <h2>2. Pick some Music (Optional)</h2>
+                <div class="music-input">
+                    <label for="music-file" class="file-upload-btn">
+                        Choose Song 🎵
+                    </label>
+                    <input type="file" id="music-file" accept="audio/*">
+                    <span id="file-name">No music selected</span>
+                </div>
+            </div>
+
+            <button id="start-btn" class="primary-btn" disabled>Start Brushing! 🌟</button>
+        </section>
+
+        <!-- Active Timer Screen -->
+        <section id="active-screen" class="screen hidden">
+            <div class="header-bar">
+                <button id="stop-btn" class="secondary-btn">Stop ⏹️</button>
+            </div>
+
+            <div class="timer-display">
+                <div class="buddy-container">
+                    <img id="current-buddy" src="" alt="Buddy">
+                </div>
+
+                <div class="instruction-box">
+                    <h2 id="step-title">Get Ready!</h2>
+                    <p id="step-desc">Grab your brush and get comfortable.</p>
+                </div>
+
+                <div class="progress-ring">
+                    <svg width="120" height="120">
+                        <circle class="progress-ring__circle" stroke="white" stroke-width="8" fill="transparent" r="52"
+                            cx="60" cy="60" />
+                        <circle class="progress-ring__circle progress-ring__circle--value" stroke="#FF6B6B"
+                            stroke-width="8" fill="transparent" r="52" cx="60" cy="60" />
+                    </svg>
+                    <div class="timer-text" id="time-left">0:00</div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="pause-btn" class="control-btn">Pause ⏸️</button>
+                <button id="skip-btn" class="control-btn">Skip ⏭️</button>
+            </div>
+        </section>
+
+        <!-- Completion Screen -->
+        <section id="completion-screen" class="screen hidden">
+            <h1>All Done! Sparkle Time! ✨</h1>
+            <div class="buddy-container">
+                <img id="final-buddy" src="" alt="Buddy">
+            </div>
+            <button id="restart-btn" class="primary-btn">Brush Again 💫</button>
+        </section>
+
+    </div>
+
+    <audio id="bg-music" loop></audio>
+    <script src="script.js"></script>
+</body>
+
+</html>
