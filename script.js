@@ -14,7 +14,7 @@ const state = {
 const brushingSteps = [
     {
         title: "Start at the Ends",
-        description: "Gently brush the very bottom tips of your hair. No yanking!",
+        description: "Gently brush the very bottom tips of your hair",
         duration: 30,
         stage: 1
     },
@@ -38,6 +38,17 @@ const brushingSteps = [
     }
 ];
 
+// Tracks
+const tracks = [
+    { title: "Fresh", file: "fresh.mp3", icon: "🍃" },
+    { title: "Gardens", file: "gardens-stylish-chill.mp3", icon: "🏡" },
+    { title: "Goldshire", file: "goldshire.mp3", icon: "✨" },
+    { title: "Honey Kisses", file: "honey-kisses.mp3", icon: "🍯" },
+    { title: "Free Spirit", file: "music-free.mp3", icon: "🕊️" },
+    { title: "Patents", file: "patents.mp3", icon: "💡" },
+    { title: "September", file: "september.mp3", icon: "🍂" }
+];
+
 // DOM Elements - Selected immediately (Script is at end of body)
 const screens = {
     setup: document.getElementById('setup-screen'),
@@ -47,6 +58,7 @@ const screens = {
 
 // Event Listeners
 const selectionContainer = document.querySelector('.avatar-selection');
+const songGrid = document.getElementById('song-grid');
 const musicInput = document.getElementById('music-file');
 const startBtn = document.getElementById('start-btn');
 const stopBtn = document.getElementById('stop-btn');
@@ -101,10 +113,49 @@ if (selectionContainer) {
     console.error("Selection container not found!");
 }
 
+// Render Song Grid
+if (songGrid) {
+    tracks.forEach(track => {
+        const el = document.createElement('div');
+        el.className = 'song-option';
+        el.dataset.file = track.file;
+        el.innerHTML = `
+            <div class="song-icon">${track.icon}</div>
+            <div class="song-title">${track.title}</div>
+        `;
+        songGrid.appendChild(el);
+    });
+
+    songGrid.addEventListener('click', (e) => {
+        const option = e.target.closest('.song-option');
+        if (!option) return;
+
+        // Clear file input if any
+        if (musicInput) musicInput.value = '';
+        document.getElementById('file-name').textContent = "No music selected";
+
+        // UI Update
+        document.querySelectorAll('.song-option').forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+
+        // State Update
+        state.musicUrl = `tracks/${option.dataset.file}`;
+        bgMusic.src = state.musicUrl;
+
+        // Basic pre-load (optional but good practice)
+        bgMusic.load();
+    });
+}
+
 if (musicInput) {
     musicInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) {
+            // Clear grid selection
+            if (songGrid) {
+                document.querySelectorAll('.song-option').forEach(opt => opt.classList.remove('selected'));
+            }
+
             document.getElementById('file-name').textContent = file.name;
             state.musicUrl = URL.createObjectURL(file);
             bgMusic.src = state.musicUrl;
