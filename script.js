@@ -41,11 +41,11 @@ const brushingSteps = [
 // Tracks
 const tracks = [
     { title: "Fresh", file: "fresh.mp3", icon: "🍃" },
-    { title: "Gardens", file: "gardens-stylish-chill.mp3", icon: "🏡" },
-    { title: "Goldshire", file: "goldshire.mp3", icon: "✨" },
+    { title: "Gardens", file: "gardens-stylish-chill.mp3", icon: "🌺" },
+    { title: "Stars", file: "goldshire.mp3", icon: "✨" },
     { title: "Honey Kisses", file: "honey-kisses.mp3", icon: "🍯" },
     { title: "Free Spirit", file: "music-free.mp3", icon: "🕊️" },
-    { title: "Patents", file: "patents.mp3", icon: "💡" },
+    { title: "Flow", file: "patents.mp3", icon: "🌀" },
     { title: "September", file: "september.mp3", icon: "🍂" }
 ];
 
